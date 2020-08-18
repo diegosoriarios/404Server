@@ -1,6 +1,6 @@
 function levelPicker() {
   ctx.clearRect(0, 0, canvas.width, canvas.height)
-  ctx.fillStyle = "black"
+  ctx.fillStyle = "#6b61ff"
   ctx.fillRect(0, 0, canvas.width, canvas.height)
   /**
    * INFINITE MODE

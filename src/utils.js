@@ -33,4 +33,18 @@ function lineLine(x1, y1, x2, y2, x3, y3, x4, y4) {
 
 function toogle(){
   document.getElementById('canvas').style.display = 'flex';document.getElementById('welcome').style.display = 'none'
+  when = ac.currentTime;
+  //start the lead part immediately
+  sequence1.play( when );
+  // delay the harmony by 16 beats
+  sequence2.play( when + ( 60 / tempo ) * 16 );
+  // start the bass part immediately
+  sequence3.play( when );
+}
+
+const colors = {
+  background: "#7c3f58",
+  dot: "#f9a875",
+  selectedDot: "#eb6b6f",
+  line: "#fff6d3",
 }

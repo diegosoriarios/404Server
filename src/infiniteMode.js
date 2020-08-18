@@ -17,7 +17,7 @@ function draw() {
     ctx.fillRect(obstacle.x, obstacle.y, obstacle.width, obstacle.height);
   }
 
-  ctx.fillStyle = "green";
+  ctx.fillStyle = colors.background;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   dots.forEach((dot) => {
@@ -30,7 +30,7 @@ function draw() {
     ctx.beginPath();
     ctx.moveTo(line.x1, line.y1);
     ctx.lineTo(line.x2, line.y2);
-    ctx.fillStyle = "black";
+    ctx.strokeStyle = colors.line;
     ctx.stroke();
   });
 
@@ -38,7 +38,7 @@ function draw() {
     ctx.beginPath();
     ctx.moveTo(dotSelected.x, dotSelected.y);
     ctx.lineTo(mX, mY);
-    ctx.fillStyle = "black";
+    ctx.strokeStyle = colors.line;
     ctx.stroke();
   }
   ctx.fillStyle = obstacle.color;
@@ -55,7 +55,7 @@ function update() {
 
     if (!selected) {
       ctx.font = "20px Georgia";
-      ctx.fillStyle = "black";
+      ctx.fillStyle = colors.selectedDot;
       ctx.fillText(
         message,
         canvas.width / 2 - ctx.measureText(message).width / 2,
@@ -136,7 +136,7 @@ window.onmousedown = (event) => {
 
 function selectNewDot(dot, event) {
   if (dot.x == nextDot.x && dot.y == nextDot.y) {
-    dot.color = "black";
+    dot.color = colors.selectedDot;
     //dotSelected.x = dot.x
     //dotSelected.y = dot.y
     dotSelected = dot;
@@ -150,6 +150,18 @@ function selectNewDot(dot, event) {
 }
 
 window.onmousemove = (event) => {
+  dots.forEach((dot) => {
+    if (
+      event.clientX > dot.x - 10 &&
+      event.clientX < dot.x + 10 &&
+      event.clientY > dot.y - 10 &&
+      event.clientY < dot.y + 10
+    ){
+      dot.radius =  15
+    } else {
+      dot.radius =  10
+    }
+  })
   if (selected) {
     mX = event.clientX;
     mY = event.clientY;
@@ -157,7 +169,6 @@ window.onmousemove = (event) => {
 };
 
 window.onresize = (event) => {
-  console.log(event.target)
   canvas.height = event.target.innerHeight
   canvas.width = event.target.innerWidth
 
@@ -184,7 +195,7 @@ function newGame() {
     dots.push(dot());
   }
   dotSelected = dots[0];
-  dotSelected.color = "black";
+  dotSelected.color = colors.selectedDot;
   selected = true;
   nextDot = getNextDot(dotSelected);
   loop();

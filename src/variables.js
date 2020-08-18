@@ -20,9 +20,9 @@ const canvas = document.getElementById("canvas")
 
     let dot = function() {
       return {
-        x: Math.floor(Math.random() * canvas.width),
-        y: Math.floor(Math.random() * canvas.height),
-        color: "white",
+        x: Math.floor(Math.random() * (canvas.width - 10) + 10),
+        y: Math.floor(Math.random() * (canvas.height - 10) + 10),
+        color: "#fadda2",
         radius: 10,
         flag: false
       }
@@ -32,7 +32,7 @@ const canvas = document.getElementById("canvas")
       return {
         x: x,
         y: y,
-        color: "white",
+        color: "#6b61ff",
         width: w,
         height: h,
         flag: false

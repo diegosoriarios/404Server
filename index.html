@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Can you fix my network?</title>
     <style>
+      * { cursor: crosshair;}
       body {
         margin: 0;
         display: flex;
@@ -18,6 +19,8 @@
         align-items: center;
         width: 100%;
         height: 100vh;
+        background-color: #7c3f58;
+        color: #f9a875;
       }
       #canvas {
         display: none;
@@ -25,15 +28,20 @@
      </style>
   </head>
   <body>
+    <!--<button id="play"> Play</button>
+    <button id="stop"> Stop</button>-->
     <div id="welcome" onmousedown="toogle()">
+      
       <h1>Connect with the closest point</h1>
     </div>
     <canvas id="canvas"></canvas>
 
+    <script src="src/tinyMusic.js"></script>
+    <script src="src/audio.js"></script>
     <script src="src/variables.js"></script>
+    <script src="src/utils.js"></script>
     <script src="src/infiniteMode.js"></script>
     <!--<script src="src/menu.js"></script>-->
-    <script src="src/utils.js"></script>
     <!--<script src="src/levelPicker.js"></script>-->
     <script>
       
