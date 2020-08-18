@@ -61,11 +61,13 @@ function update() {
         canvas.width / 2 - ctx.measureText(message).width / 2,
         canvas.height / 2
       );
-      ctx.fillText(
-        description,
-        canvas.width / 2 - ctx.measureText(description).width / 2,
-        canvas.height / 2 + 64
-      );
+      description.forEach((desc,i) => {
+        ctx.fillText(
+          desc,
+          canvas.width / 2 - ctx.measureText(desc).width / 2,
+          canvas.height / 2 + 64 * (i+1)
+        );
+      })
     }
   }
 }
@@ -157,7 +159,7 @@ window.onmousemove = (event) => {
       event.clientY > dot.y - 10 &&
       event.clientY < dot.y + 10
     ){
-      dot.radius =  15
+      if (!dot.flag) dot.radius =  15
     } else {
       dot.radius =  10
     }
@@ -176,19 +178,24 @@ window.onresize = (event) => {
 
 function gameOver() {
   selected = false;
+  if (level > highScore) {localStorage.setItem("JS13DOT", JSON.stringify(level)); highScore = level }
   message = "Game Over";
-  description = `You made until level ${level}\nClick to start a new game`;
+  description[0] = `You made until level ${level}`;
+  description[1] = `Your high score is ${highScore}`
+  description[2] = `Click to start a new game`;
   level = 0;
   //isMenu = true
 }
 
 function nextLevel() {
+  description = []
   selected = false;
   message = "Congratulations";
-  description = "Go to the next level";
+  description[0] = "Go to the next level";
 }
 
 function newGame() {
+  highScore = localStorage.getItem("JS13DOT") ? localStorage.getItem("JS13DOT") : 0
   dots = [];
   lines = [];
   for (let i = 0; i < level * 2; i++) {
@@ -196,6 +203,7 @@ function newGame() {
   }
   dotSelected = dots[0];
   dotSelected.color = colors.selectedDot;
+  dotSelected.flag = true
   selected = true;
   nextDot = getNextDot(dotSelected);
   loop();

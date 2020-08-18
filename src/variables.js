@@ -14,8 +14,10 @@ const canvas = document.getElementById("canvas")
     let dotSelected = {x: 0, y: 0, color: ""}
     let mouseX = mouseY = 0
     let mX = mY = 0
-    let message = description = ""
+    let message = ""
+    let description = []
     let level = 0
+    let highScore = 0
     let level1 = level2 = level3 = level4 = level5 = level6 = level7 = level8 = level9 = false
 
     let dot = function() {

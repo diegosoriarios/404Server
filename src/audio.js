@@ -130,9 +130,9 @@ sequence3.staccato = 0.25;
 //sequence3.smoothing = 0.4;
 
 // adjust the levels so the bass and harmony aren't too loud
-sequence1.gain.gain.value = 1.0 / 2;
-sequence2.gain.gain.value = 0.8 / 2;
-sequence3.gain.gain.value = 0.65 / 2;
+sequence1.gain.gain.value = 1.0 / 8;
+sequence2.gain.gain.value = 0.8 / 8;
+sequence3.gain.gain.value = 0.5 / 8;
 
 // apply EQ settings
 sequence1.mid.frequency.value = 800;
